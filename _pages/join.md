@@ -10,7 +10,7 @@ redirect_from:
 
 
 
-###PhD Students
+### PhD Students
 
 I am recruiting 1-2 PhD students to join my lab at the University of Minnesota in Fall 2025. My primary appointment will be in the [Clinical Science and Psychopathology Research Program (CSPR) program](https://cla.umn.edu/psychology/graduate/areas-specialization/clinical-science-and-psychopathology-research-program-cspr). However I will also have a secondary appointment in the [Personality, Individual Differences, and Behavior Genetics (PIB) program](https://cla.umn.edu/psychology/graduate/areas-specialization/personality-individual-differences-and-behavior-genetics-pib). So I will be able to work with students from either PhD program.
 
