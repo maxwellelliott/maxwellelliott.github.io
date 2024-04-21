@@ -22,7 +22,7 @@ repository               : "academicpages/academicpages.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Your Sidebar Name"
+  name             : "Maxwell Elliott"
   pronouns         : # example: "she/her"  
   bio              : "Postdoctoral Researcher"
   location         : "Cambridge, Massachusetts"
@@ -64,7 +64,7 @@ author:
   steam            : # Username
   telegram         : # URL
   tumblr           : # Username
-  twitter          : "https://twitter.com/max12elliott" # Username for X / Twitter
+  twitter          : "max12elliott" # Username for X / Twitter
   vine             : # Username
   weibo            : # Username
   wikipedia        : # Username
