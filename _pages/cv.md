@@ -12,4 +12,4 @@ redirect_from:
 
 Below is my current CV:
 
-<embed src="{{ site.baseurl }}/files/CV_MaxElliott.pdf" type="application/pdf" width="100%" height="600px" />
+<embed src="{{ site.baseurl }}/files/CV_240421.pdf" type="application/pdf" width="100%" height="600px" />
