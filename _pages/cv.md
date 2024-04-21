@@ -10,6 +10,6 @@ redirect_from:
 {% include base_path %}
 ## Curriculum Vitae
 
-Below is my current CV:
+
 
 <embed src="{{ site.baseurl }}/files/CV_240421.pdf" type="application/pdf" width="100%" height="600px" />
