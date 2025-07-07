@@ -11,7 +11,7 @@ locale                   : "en-US"
 title                    : ""
 title_separator          : "-"
 name                     : &name "Maxwell Elliott"
-description              : &description "Postdoctoral Fellow at Harvard University"
+description              : &description "Assistant Professor at the University of Minnesota"
 url                      : https://maxwellelliott.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "academicpages/academicpages.github.io"
@@ -24,11 +24,11 @@ author:
   avatar           : "headshot.jpeg"
   name             : "Maxwell Elliott"
   pronouns         : # example: "she/her"  
-  bio              : "Postdoctoral Researcher"
-  location         : "Cambridge, Massachusetts"
-  employer         : "Harvard University"
+  bio              : "Assistant Professor"
+  location         : "Minneapolis, Minnesota"
+  employer         : "University of Minnesota"
   uri              : # URL
-  email            : "maxwell_elliott@fas.harvard.edu" 
+  email            : "maxwe128@umn.edu" 
 
   # Academic websites
   #arxiv            : # URL - Update with the correct link to your profile
