@@ -12,4 +12,4 @@ redirect_from:
 
 
 
-<embed src="{{ site.baseurl }}/files/CV_240421.pdf" type="application/pdf" width="100%" height="600px" />
+<embed src="{{ site.baseurl }}/files/CV_MaxElliott_250707.pdf" type="application/pdf" width="100%" height="600px" />
