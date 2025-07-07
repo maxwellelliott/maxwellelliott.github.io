@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-Hello! I am an Assistant Professor at the University of Minnesota. 
+Hello! I am an Assistant Professor at the University of Minnesota. I'm [recruiting!](https://maxwellelliott.github.io/join/)
 
 Research
 ======
