@@ -22,7 +22,42 @@
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
+  --grid-line: rgba(22, 24, 27, 0.07);
+  --on-accent: #16181B;
+
   color-scheme: light;
+}
+
+/* Dark theme: follows the system unless the visitor picked light, or picked dark explicitly. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --plate: #14171A;
+    --plate-deep: #1D2125;
+    --ink: #E7E9E4;
+    --ink-2: #A9AFB5;
+    --hair: rgba(231, 233, 228, 0.16);
+    --hair-strong: rgba(231, 233, 228, 0.32);
+    --dunedin: #D9A43A;
+    --ukb: #5B8BC4;
+    --adni: #4FAE93;
+    --link: #9CC0EE;
+    --grid-line: rgba(231, 233, 228, 0.07);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --plate: #14171A;
+  --plate-deep: #1D2125;
+  --ink: #E7E9E4;
+  --ink-2: #A9AFB5;
+  --hair: rgba(231, 233, 228, 0.16);
+  --hair-strong: rgba(231, 233, 228, 0.32);
+  --dunedin: #D9A43A;
+  --ukb: #5B8BC4;
+  --adni: #4FAE93;
+  --link: #9CC0EE;
+  --grid-line: rgba(231, 233, 228, 0.07);
+  color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -43,7 +78,7 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-::selection { background: var(--dunedin); color: var(--ink); }
+::selection { background: var(--dunedin); color: var(--on-accent); }
 
 h1, h2, h3, p, ul, ol, figure, dl, dd { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
@@ -116,6 +151,24 @@ a:hover { text-decoration-thickness: 2px; }
   background-size: 100% 3px;
 }
 .site-nav .icon { width: 0.8em; height: 0.8em; }
+
+/* theme switch */
+.theme-toggle {
+  display: inline-grid; place-items: center;
+  width: 2.5rem; height: 2.5rem;
+  background: none; color: var(--ink); cursor: pointer;
+  border: 1.5px solid var(--hair-strong);
+  transition: border-color 0.2s var(--ease-out), background-color 0.25s var(--ease-out), color 0.25s var(--ease-out);
+}
+.theme-toggle:hover { border-color: var(--ink); background: var(--ink); color: var(--plate); }
+.theme-toggle svg { width: 1.15rem; height: 1.15rem; grid-area: 1 / 1; transition: opacity 0.3s var(--ease-out), transform 0.45s var(--ease-out); }
+.theme-toggle .i-sun { opacity: 0; transform: rotate(-60deg) scale(0.6); }
+:root[data-theme-active="dark"] .theme-toggle .i-moon { opacity: 0; transform: rotate(60deg) scale(0.6); }
+:root[data-theme-active="dark"] .theme-toggle .i-sun { opacity: 1; transform: none; }
+
+body, .site-header, .ruled, .plate__toggle button {
+  transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
+}
 .site-nav .nav-cv {
   padding: 0.35rem 0.75rem;
   border: 1.5px solid var(--ink);
@@ -266,8 +319,8 @@ a:hover { text-decoration-thickness: 2px; }
 .band-label { font-family: var(--sans) !important; font-weight: 750; font-size: 19px; letter-spacing: 0.01em; }
 .band--ukb .band-label { fill: var(--plate); }
 .band--adni .band-label { fill: var(--adni); paint-order: stroke; stroke: var(--plate); stroke-width: 5px; }
-.band--dunedin .band-label { fill: var(--ink); }
-.phase { fill: var(--ink); }
+.band--dunedin .band-label { fill: var(--on-accent); }
+.phase { fill: var(--on-accent); }
 .note { font-size: 14px; }
 .now line { stroke: var(--ink); stroke-width: 1.2; stroke-dasharray: 5 4; }
 .now text { font-size: 14px; }
@@ -424,8 +477,8 @@ a:hover { text-decoration-thickness: 2px; }
 .page-head {
   padding: clamp(2rem, 5vw, 4rem) var(--gutter) clamp(2.5rem, 5vw, 4rem);
   background:
-    linear-gradient(rgba(22, 24, 27, 0.07) 1px, transparent 1px) 0 0 / 100% 3rem,
-    linear-gradient(90deg, rgba(22, 24, 27, 0.07) 1px, transparent 1px) 0 0 / 3rem 100%,
+    linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 100% 3rem,
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 3rem 100%,
     var(--plate);
   border-bottom: 2px solid var(--ink);
 }
@@ -581,6 +634,7 @@ a:hover { text-decoration-thickness: 2px; }
   .site-name { font-size: 1.1875rem; }
   .site-nav ul { justify-content: space-between; gap: 0.5rem; }
   .site-nav .nav-cv { padding: 0.3rem 0.6rem; }
+  .theme-toggle { width: 2.1rem; height: 2.1rem; }
   .site-nav a { font-size: 1rem; padding: 0.4rem 0; }
 
   .title-block { margin-top: 1rem; }

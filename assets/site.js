@@ -1,3 +1,32 @@
+// Theme switch: system preference by default, the visitor's choice remembered once made.
+(function () {
+  var root = document.documentElement;
+  var system = window.matchMedia("(prefers-color-scheme: dark)");
+  var buttons = document.querySelectorAll("[data-theme-toggle]");
+
+  function active() {
+    var chosen = root.getAttribute("data-theme");
+    return chosen || (system.matches ? "dark" : "light");
+  }
+  function sync() {
+    var theme = active();
+    root.setAttribute("data-theme-active", theme);
+    buttons.forEach(function (b) {
+      b.setAttribute("aria-label", theme === "dark" ? "Switch to light mode" : "Switch to dark mode");
+    });
+  }
+  buttons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var next = active() === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+      sync();
+    });
+  });
+  system.addEventListener("change", sync);
+  sync();
+})();
+
 // Home: on wide screens the plate follows whichever note is mid-screen.
 // On phones the plate sits in the page once, with a two-way toggle instead.
 (function () {
