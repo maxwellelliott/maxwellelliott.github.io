@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Atkinson+Hyperlegible+Next:wght@400;600;700;750&display=swap">
   <link rel="stylesheet" href="../assets/site.css">
   <script>
+    document.documentElement.classList.add("js");
     try { var t = localStorage.getItem("theme"); if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
   </script>
 </head>
@@ -31,18 +32,27 @@
 
 <header class="site-header">
   <a class="site-name" href="../">Maxwell Elliott</a>
-  <nav class="site-nav" aria-label="Main">
-    <ul>
-      <li><a href="../#research">Research</a></li>
-      <li><a href="../publications/">Papers</a></li>
-      <li><a href="./" aria-current="page">Join</a></li>
-      <li><a class="nav-cv" href="https://maxwellelliott.github.io/files/CV_MaxElliott_250707.pdf">CV<span class="visually-hidden"> (PDF, opens the file)</span><svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a></li>
-      <li><button class="theme-toggle" type="button" aria-label="Switch to dark mode" data-theme-toggle>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-menu-toggle>
+    <span class="visually-hidden">Menu</span>
+    <svg viewBox="0 0 20 20" aria-hidden="true"><path class="m1" d="M3 5.5h14"/><path class="m2" d="M3 10h14"/><path class="m3" d="M3 14.5h14"/></svg>
+  </button>
+  <div class="site-menu" id="site-menu">
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../#research">Research</a></li>
+        <li><a href="../publications/">Papers</a></li>
+        <li><a href="../people/">People</a></li>
+        <li><a href="../news/">News</a></li>
+        <li><a href="./" aria-current="page">Join</a></li>
+      </ul>
+    </nav>
+    <div class="site-tools">
+      <button class="theme-toggle" type="button" aria-label="Switch to dark mode" data-theme-toggle>
         <svg class="i-moon" viewBox="0 0 20 20" aria-hidden="true"><path d="M16.5 12.2A7 7 0 0 1 7.8 3.5a7 7 0 1 0 8.7 8.7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
         <svg class="i-sun" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10 1.5v2.2M10 16.3v2.2M1.5 10h2.2M16.3 10h2.2M4 4l1.6 1.6M14.4 14.4 16 16M4 16l1.6-1.6M14.4 5.6 16 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-      </button></li>
-    </ul>
-  </nav>
+      </button>
+    </div>
+  </div>
 </header>
 
 <main id="main">

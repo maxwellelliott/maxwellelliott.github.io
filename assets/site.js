@@ -27,6 +27,36 @@
   sync();
 })();
 
+// Phones: the nav folds behind a menu button. Escape, a tap outside, or leaving it with Tab closes it.
+(function () {
+  var header = document.querySelector(".site-header");
+  var button = document.querySelector("[data-menu-toggle]");
+  if (!header || !button) return;
+  var small = window.matchMedia("(max-width: 640px)");
+
+  function isOpen() { return button.getAttribute("aria-expanded") === "true"; }
+  function set(open) {
+    button.setAttribute("aria-expanded", String(open));
+    if (open) header.setAttribute("data-menu-open", "");
+    else header.removeAttribute("data-menu-open");
+  }
+
+  button.addEventListener("click", function () { set(!isOpen()); });
+  header.querySelectorAll(".site-nav a").forEach(function (a) {
+    a.addEventListener("click", function () { set(false); });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && isOpen()) { set(false); button.focus(); }
+  });
+  document.addEventListener("click", function (e) {
+    if (isOpen() && !header.contains(e.target)) set(false);
+  });
+  header.addEventListener("focusout", function (e) {
+    if (isOpen() && e.relatedTarget && !header.contains(e.relatedTarget)) set(false);
+  });
+  small.addEventListener("change", function () { if (!small.matches) set(false); });
+})();
+
 // Home: on wide screens the plate follows whichever note is mid-screen.
 // On phones the plate sits in the page once, with a two-way toggle instead.
 (function () {
@@ -119,4 +149,70 @@
   }
   svg.appendChild(el("line", { "class": "base", x1: 0, y1: base, x2: W, y2: base }));
   holder.appendChild(svg);
+})();
+
+// People page: one group at a time, as tabs. The URL hash (#staff) picks the tab, so links can point at a group.
+(function () {
+  var root = document.querySelector("[data-people]");
+  if (!root) return;
+  var list = root.querySelector("[data-tablist]");
+  var tabs = Array.prototype.slice.call(list.querySelectorAll("a"));
+  var panels = tabs.map(function (t) { return document.getElementById(t.hash.slice(1)); });
+
+  list.setAttribute("role", "tablist");
+  list.setAttribute("aria-label", "Lab members by role");
+  tabs.forEach(function (tab, i) {
+    tab.parentNode.setAttribute("role", "presentation");
+    tab.setAttribute("role", "tab");
+    tab.id = "tab-" + panels[i].id;
+    tab.setAttribute("aria-controls", panels[i].id);
+    panels[i].setAttribute("role", "tabpanel");
+    panels[i].setAttribute("aria-labelledby", tab.id);
+    panels[i].setAttribute("tabindex", "0");
+  });
+
+  function select(i, focus) {
+    tabs.forEach(function (tab, j) {
+      var on = i === j;
+      tab.setAttribute("aria-selected", String(on));
+      tab.setAttribute("tabindex", on ? "0" : "-1");
+      panels[j].hidden = !on;
+    });
+    if (focus) tabs[i].focus();
+  }
+  function choose(i, focus) {
+    select(i, focus);
+    history.replaceState(null, "", "#" + panels[i].id);
+  }
+  function fromHash() {
+    var id = location.hash.slice(1);
+    for (var i = 0; i < panels.length; i++) if (panels[i].id === id) return i;
+    return -1;
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener("click", function (e) {
+      e.preventDefault();
+      choose(i);
+    });
+    tab.addEventListener("keydown", function (e) {
+      var n = tabs.length, j = null;
+      if (e.key === "ArrowRight") j = (i + 1) % n;
+      else if (e.key === "ArrowLeft") j = (i - 1 + n) % n;
+      else if (e.key === "Home") j = 0;
+      else if (e.key === "End") j = n - 1;
+      else if (e.key === " ") j = i;
+      if (j === null) return;
+      e.preventDefault();
+      choose(j, true);
+    });
+  });
+  window.addEventListener("hashchange", function () {
+    var i = fromHash();
+    if (i > -1) select(i);
+  });
+
+  list.hidden = false;
+  root.setAttribute("data-tabs", "");
+  select(Math.max(0, fromHash()));
 })();
