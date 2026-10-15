@@ -1,8 +1,48 @@
-Contributions are welcome! 
+# Working on the site together
 
-Please add issues and make pull requests. There are no stupid questions. All ideas are welcome. This is a volunteer project. Be excellent to each other.
+Anyone listed as a collaborator on this repo (repo **Settings → Collaborators**) can push.
+The rule of thumb: **`master` is live**, so anything you push there is public within a minute
+or two.
 
-Bug reports and feature requests to the template  should be [submitted via GitHub](https://github.com/academicpages/academicpages.github.io/issues/new/choose). For questions concerning how to style the template, please feel free to start a [new discussion on GitHub](https://github.com/academicpages/academicpages.github.io/discussions).
+## Small fixes (typo, new paper, news item)
 
-Fork from master and go from there. Remember that this repository is intended to remain a generic, ready-to-fork template that demonstrates the features of academicpages.
+Editing directly on `master` is fine:
 
+1. Edit the file, either on github.com (open the file and click the pencil icon) or locally.
+2. If editing locally, preview it (see README), then:
+
+   ```bash
+   git pull
+   git add -A
+   git commit -m "Add 2026 Neuron paper"
+   git push
+   ```
+
+## Bigger changes (redesigns, new pages, anything you want a second opinion on)
+
+Use a branch and a pull request so the other person can look before it goes live:
+
+```bash
+git pull
+git checkout -b people-page-photos
+# ...edit and preview...
+git add -A
+git commit -m "Add photos to People page"
+git push -u origin people-page-photos
+```
+
+Then open the pull request on GitHub (it offers a "Compare & pull request" button after the
+push), ask the other person to review it, and merge it when you're both happy. Merging is
+what publishes it.
+
+## Before you push
+
+- Preview locally and click through every page you touched, in light and dark mode and at
+  phone width.
+- If you changed the header or footer, make the same change in all five pages.
+- Keep existing file paths in `files/` and `images/` stable; other sites may link to them.
+
+## Undoing a change
+
+Every change is a commit, so nothing is lost. `git revert <commit>` undoes one cleanly, and
+the pre-2026 Jekyll site is on the `legacy-site` branch.

@@ -1,41 +1,52 @@
+# maxwellelliott.github.io
 
-# Academic Pages
+Source for Maxwell Elliott's academic website, live at **https://maxwellelliott.github.io**.
 
-![pages-build-deployment](https://github.com/academicpages/academicpages.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)
+It's a plain static site: hand-written HTML, one stylesheet, one script. There is no build
+step, no framework, and nothing to install. Whatever is on the `master` branch is what
+GitHub Pages serves, usually within a minute or two of a push.
 
-Academic Pages is a Github Pages template for academic websites.
+## Layout
 
+| Path | What it is |
+| --- | --- |
+| `index.html` | Home page (research, recent papers, contact) |
+| `publications/index.html` | Full publication list |
+| `people/index.html` | Lab members |
+| `news/index.html` | Lab news |
+| `join/index.html` | Recruiting / how to join the lab |
+| `assets/site.css` | All styles, including dark mode |
+| `assets/site.js` | Dark-mode switch and phone menu |
+| `images/` | Images hosted on this site (e.g. `headshot.jpeg`) |
+| `files/` | PDFs (old CV links point here, so keep these paths stable) |
+| `favicon.svg` | Browser tab icon |
+| `.nojekyll` | Tells GitHub Pages to serve files as-is instead of running Jekyll |
 
-# Getting Started
+Each page is a folder with an `index.html`, so `people/index.html` is served at `/people/`.
+To add a page, copy an existing folder (e.g. `news/`), edit it, and add a link to it in the
+header nav of every page.
 
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Click the "Use this template" button in the top right.
-1. On the "New repository" page, enter your repository name as "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and add your content.
-1. Upload any files (like PDFs, .zip files, etc.) to the `files/` directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.  
-1. Check status by going to the repository settings, in the "GitHub pages" section
-1. (Optional) Use the Jupyter notebooks or python scripts in the `markdown_generator` folder to generate markdown files for publications and talks from a TSV file.
+The header, nav and footer are repeated in each page's HTML, so a nav change has to be
+made in all five files.
 
-See more info at https://academicpages.github.io/
+## Preview locally
 
-## Running Locally
+From this folder:
 
-When you are initially working your website, it is very useful to be able to preview the changes locally before pushing them to GitHub. To work locally you will need to:
+```bash
+python3 -m http.server 8000
+```
 
-1. Clone the repository and made updates as detailed above.
-1. Make sure you have ruby-dev, bundler, and nodejs installed: `sudo apt install ruby-dev ruby-bundler nodejs`
-1. Run `bundle install` to install ruby dependencies. If you get errors, delete Gemfile.lock and try again.
-1. Run `jekyll serve -l -H localhost` to generate the HTML and serve it from `localhost:4000` the local server will automatically rebuild and refresh the pages on change.
+Then open http://localhost:8000. Refresh after editing; no restart needed.
 
+## Making changes
 
-# Maintenance 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the edit → review → publish workflow.
 
-Bug reports and feature requests to the template  should be [submitted via GitHub](https://github.com/academicpages/academicpages.github.io/issues/new/choose). For questions concerning how to style the template, please feel free to start a [new discussion on GitHub](https://github.com/academicpages/academicpages.github.io/discussions).
+## History
 
-This repository was forked (then detached) by [Stuart Geiger](https://github.com/staeiou) from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/), which is © 2016 Michael Rose and released under the MIT License (see LICENSE.md). It is currently being maintained by [Robert Zupko](https://github.com/rjzupkoii) and additional maintainers would be welcomed.
-
-## Bugfixes and enhancements
-
-If you have bugfixes and enhancements that you would like to submit as a pull request, you will need to [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository as opposed to using it as a template. This will also allow you to [synchronize your copy](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) of template to your fork as well.
-
-Unfortunately, one logistical issue with a template theme like Academic Pages that makes it a little tricky to get bug fixes and updates to the core theme. If you use this template and customize it, you will probably get merge conflicts if you attempt to synchronize. If you want to save your various .yml configuration files and markdown files, you can delete the repository and fork it again. Or you can manually patch.
+- Until October 2026 the site was built with the academicpages Jekyll template. That
+  version is preserved on the `legacy-site` branch if anything needs to be recovered.
+- The current design was built by GitHub user `MantisTMD1` in
+  `MantisTMD1/maxwell-elliott-site` and merged in with its commit history intact. This repo
+  is now the single place the site lives; make new changes here.
