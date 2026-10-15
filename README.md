@@ -12,7 +12,7 @@ GitHub Pages serves, usually within a minute or two of a push.
 | --- | --- |
 | `index.html` | Home page (research, recent papers, contact) |
 | `publications/index.html` | Full publication list |
-| `people/index.html` | Lab members |
+| `about/index.html` | About me (bio) |
 | `news/index.html` | Lab news |
 | `join/index.html` | Recruiting / how to join the lab |
 | `assets/site.css` | All styles, including dark mode |
@@ -22,7 +22,7 @@ GitHub Pages serves, usually within a minute or two of a push.
 | `favicon.svg` | Browser tab icon |
 | `.nojekyll` | Tells GitHub Pages to serve files as-is instead of running Jekyll |
 
-Each page is a folder with an `index.html`, so `people/index.html` is served at `/people/`.
+Each page is a folder with an `index.html`, so `about/index.html` is served at `/about/`.
 To add a page, copy an existing folder (e.g. `news/`), edit it, and add a link to it in the
 header nav of every page.
 
