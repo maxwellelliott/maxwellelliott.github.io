@@ -35,6 +35,12 @@ Then open the pull request on GitHub (it offers a "Compare & pull request" butto
 push), ask the other person to review it, and merge it when you're both happy. Merging is
 what publishes it.
 
+## Adding a paper
+
+Usually you don't need to: the weekly ORCID sync (see README) adds it. To add one by hand,
+copy a `<li class="paper">` block into the right year on `publications/index.html`. Use the
+paper's `https://doi.org/...` link so the sync recognizes it and Altmetric can find it.
+
 ## Before you push
 
 - Preview locally and click through every page you touched, in light and dark mode and at

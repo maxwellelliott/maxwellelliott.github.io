@@ -520,6 +520,14 @@ body, .site-header, .ruled, .plate__toggle button {
 .year-group .paper-list { border-top: 0; }
 .year-group .paper:first-child { padding-top: 0.35rem; }
 
+/* Altmetric score under a paper's venue (added by site.js). Altmetric's inline styles are overridden to fit the type. */
+.paper__altmetric { display: block; margin-top: 0.45rem; }
+.paper__altmetric:empty, .paper__altmetric[style*="none"] { display: none; }
+.paper__altmetric a { display: inline-flex !important; align-items: center; gap: 0.45rem; text-decoration: none; color: var(--ink-2); }
+.paper__altmetric img { width: 1.25rem !important; height: 1.25rem !important; border-radius: 50%; }
+.paper__altmetric-label { font-family: var(--mono); font-size: 0.75rem; font-weight: 600; text-decoration: underline; text-decoration-color: var(--hair-strong); text-underline-offset: 0.2em; }
+.paper__altmetric a:hover .paper__altmetric-label { color: var(--ukb); text-decoration-color: currentColor; }
+
 .source-note { font-size: 0.9375rem; color: var(--ink-2); max-width: 44rem; margin-top: 2rem; }
 
 /* people page. Without JS every group shows in turn; site.js turns them into tabs. */

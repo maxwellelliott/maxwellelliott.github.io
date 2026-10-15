@@ -1,0 +1,11 @@
+# ORCID entries the weekly sync should never add to the Papers page, one DOI per line.
+# Mostly preprints whose published version is already listed under a slightly different title.
+# To keep a new ORCID entry off the site, add its DOI here (and delete it from the page if the
+# sync already added it).
+
+10.1101/2025.03.14.25323769   # preprint of "Detecting short-interval longitudinal cortical atrophy..." (Imaging Neuroscience 2026)
+10.1101/2024.08.19.608305     # preprint of DunedinPACNI (Nature Aging 2025)
+10.1101/2023.09.06.23295140   # preprint of "A blood biomarker of the pace of aging..." (Neurobiology of Aging 2024)
+10.1101/516989                # preprint of the interleukin-1β polygenic score paper (Human Brain Mapping 2019)
+10.1101/681700                # preprint of the test-retest reliability meta-analysis (Psychological Science 2020)
+10.2139/ssrn.3193411          # preprint of "General functional connectivity..." (NeuroImage 2019)

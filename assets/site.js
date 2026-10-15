@@ -216,3 +216,41 @@
   root.setAttribute("data-tabs", "");
   select(Math.max(0, fromHash()));
 })();
+
+// Papers page: an Altmetric attention score under each paper that has a DOI and has been mentioned
+// somewhere. Altmetric's embed script draws its donut; we add the score as a label in the site's type.
+(function () {
+  if (!document.querySelector("[data-year-axis]")) return;
+  var papers = document.querySelectorAll(".paper");
+  papers.forEach(function (p) {
+    var link = p.querySelector('.paper__title a[href^="https://doi.org/"]');
+    var venue = p.querySelector(".paper__venue");
+    if (!link || !venue) return;
+    var badge = document.createElement("span");
+    badge.className = "altmetric-embed paper__altmetric";
+    badge.setAttribute("data-badge-type", "donut");
+    badge.setAttribute("data-hide-no-mentions", "true");
+    badge.setAttribute("data-link-target", "_blank");
+    badge.setAttribute("data-doi", decodeURIComponent(link.getAttribute("href").replace("https://doi.org/", "")));
+    venue.appendChild(badge);
+
+    // When Altmetric fills the badge in, read the score from its image and label it.
+    new MutationObserver(function (_, obs) {
+      var a = badge.querySelector("a"), img = badge.querySelector("img");
+      if (!a || !img) return;
+      obs.disconnect();
+      var score = (img.getAttribute("alt") || "").match(/(\d+)\s*$/);
+      if (!score) return;
+      var label = document.createElement("span");
+      label.className = "paper__altmetric-label";
+      label.textContent = "Altmetric " + Number(score[1]).toLocaleString("en-US");
+      a.appendChild(label);
+      a.setAttribute("aria-label", "Altmetric attention score " + score[1] + " (opens altmetric.com)");
+    }).observe(badge, { childList: true, subtree: true });
+  });
+
+  var s = document.createElement("script");
+  s.src = "https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js";
+  s.async = true;
+  document.body.appendChild(s);
+})();
